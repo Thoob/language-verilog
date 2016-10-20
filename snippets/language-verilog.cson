@@ -59,7 +59,7 @@
   'assert':
     'prefix': 'assert'
     'body': """
-      assert property (${1:property_name});
+    assert property (${1:property_name});
     $0
   """
 
@@ -79,12 +79,19 @@
   'assume':
     'prefix': 'assume'
     'body': """
-      assume property (${1:property_name});
-      $0
+    assume property (${1:property_name});
+    $0
   """
 
 
 #B
+  'begin-end':
+    'prefix': 'begin'
+    'body': """
+    begin
+    \t$0
+    end
+  """
 
 #C
   'case':
