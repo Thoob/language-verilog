@@ -56,6 +56,13 @@
       end
     """
 
+  'assert':
+    'prefix': 'assert'
+    'body': """
+      assert property (${1:property_name});
+    $0
+  """
+
   'assign single':
     'prefix': 'assign_s'
     'body': """
@@ -69,6 +76,12 @@
       assign ${1:destination} = (${2:question}) ? ${3:true_source} : ${4:else_source}
       $0
     """
+  'assume':
+    'prefix': 'assume'
+    'body': """
+      assume property (${1:property_name});
+      $0
+  """
 
 
 #B
@@ -200,7 +213,15 @@
       parameter ${1:parameter_type} ${2:parameter_name} = ${3:parameter_value},
       $0
     """
-
+  'property':
+    'prefix': 'property'
+    'body': """
+      property ${1:property_name};
+        \t@(${2:clocking_signal}) disable iff (${3:reset_signal})
+        \t\t${4:property_rule};
+      endproperty
+      $0
+  """
 #Q
 
 #R
@@ -229,6 +250,34 @@
     """
 
 #U
+#UVM Macro snippets
+  'uvm_info':
+    'prefix': 'uvm_info'
+    'body': """
+      `uvm_info(${1:id},${2:msg},${3:verbosity})
+      $0
+    """
+
+  'uvm_warning':
+    'prefix': 'uvm_warning'
+    'body': """
+      `uvm_warning(${1:id},${2:msg})
+      $0
+    """
+
+  'uvm_error':
+    'prefix': 'uvm_error'
+    'body': """
+      `uvm_error(${1:id},${2:msg})
+      $0
+    """
+
+  'uvm_fatal':
+    'prefix': 'uvm_fatal'
+    'body': """
+      `uvm_fatal(${1:id},${2:msg})
+      $0
+    """
 
 #V
 
