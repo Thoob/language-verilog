@@ -59,7 +59,7 @@
   'assert':
     'prefix': 'assert'
     'body': """
-    assert property (${1:property_name});
+    a_${1:property_name}: assert property (${1:property_name});
     $0
   """
 
@@ -79,7 +79,7 @@
   'assume':
     'prefix': 'assume'
     'body': """
-    assume property (${1:property_name});
+    a_${1:property_name}: assume property (${1:property_name});
     $0
   """
 
@@ -224,8 +224,8 @@
     'prefix': 'property'
     'body': """
       property ${1:property_name};
-        \t@(${2:clocking_signal}) disable iff (${3:reset_signal})
-        \t\t${4:property_rule};
+      \t@(${2:clocking_signal}) disable iff (${3:reset_signal})
+      \t\t${4:property_rule};
       endproperty
       $0
   """
@@ -293,7 +293,7 @@
     'prefix': 'while'
     'body': """
       while (${1:wire}) begin
-      \t$0
+        $0
       end
     """
 
@@ -316,3 +316,48 @@
 #Y
 
 #Z
+
+#SVUNIT
+  'SVTEST':
+    'prefix': 'SVTEST'
+    'body': """
+      `SVTEST(${1:test_name})
+        $0
+      `SVTEST_END
+    """
+
+  'FAIL_IF':
+    'prefix': 'FAIL_IF'
+    'body': """
+      `FAIL_IF(${1:fail_condition})
+    """
+
+  'FAIL_UNLESS':
+    'prefix': 'FAIL_UNLESS'
+    'body': """
+      `FAIL_UNLESS(${1:fail_condition})
+    """
+
+  'FAIL_IF_EQUAL':
+    'prefix': 'FAIL_IF_EQUAL'
+    'body': """
+      `FAIL_IF_EQUAL(${1:a}, ${2:b})
+    """
+
+  'FAIL_UNLESS_EQUAL':
+    'prefix': 'FAIL_UNLESS_EQUAL'
+    'body': """
+      `FAIL_UNLESS_EQUAL(${1:a}, ${2:b})
+    """
+
+  'FAIL_IF_STR_EQUAL':
+    'prefix': 'FAIL_IF_STR_EQUAL'
+    'body': """
+      `FAIL_IF_STR_EQUAL(${1:a}, ${2:b})
+    """
+
+  'FAIL_UNLESS_STR_EQUAL':
+    'prefix': 'FAIL_UNLESS_STR_EQUAL'
+    'body': """
+      `FAIL_UNLESS_STR_EQUAL(${1:a}, ${2:b})
+    """
